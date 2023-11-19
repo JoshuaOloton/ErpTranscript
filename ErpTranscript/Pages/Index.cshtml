@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+    <h4 class="mb-5 page-heading">Dashboard</h4>
+    <div class="activities">
+        @if (User.IsInRole("HOD"))
+        {
+            <div class="activity">
+                <div class="activity__icon">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+                <div class="activity__link">
+                    <a asp-page="/HOD">View Pending Transcripts</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            @if (!User.IsInRole("IT Officer"))
+            {
+                <div class="activity">
+                    <div class="activity__icon">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <div class="activity__link">
+                        <a asp-page="/Pending">View Pending Transcripts</a>
+                    </div>
+                </div>
+                <div class="activity">
+                    <div class="activity__icon">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </div>
+                    <div class="activity__link">
+                        <a asp-page="/Uploaded">View Generated Transcripts</a>
+                    </div>
+                </div>
+            }
+            <div class="activity">
+                <div class="activity__icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="activity__link">
+                    <a asp-page="/Approved">View Approved Transcripts</a>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>

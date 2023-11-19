@@ -1,0 +1,442 @@
+﻿@page
+@model ErpTranscript.Pages.TranscriptModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" id="details">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Transcript - Transcript Manager</title>
+
+    @*FAVICONS*@
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    @*TOASTR CSS CDN*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/transcript.css" media="screen" />
+    <link rel="stylesheet" href="~/css/transcriptprint.css" media="print" />
+
+    @*<style>
+        body {
+            padding: 40px;
+            font-size: 25px;
+            background-image: url(assets/images/yct.png);
+            background-position: center;
+            background-size: contain;
+        }
+
+
+        .school-logo {
+            width: 200px;
+            /* margin-right: 50px; */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .school-name {
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .header-info {
+            text-align: center;
+            position: relative;
+            border: 1px solid #00000010;
+        }
+
+        .header-info p, .header-info h3 {
+            margin: 0;
+        }
+
+        .header-info + p {
+            padding-bottom: 5px;
+            border-bottom: 2px solid black;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .official {
+            text-decoration: underline;
+        }
+
+        .document-header {
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid black;
+            padding: 0 20px;
+        }
+
+        .document-header h3 {
+            margin: 0;
+        }
+
+        .cgpa-details {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            /* border: 1px solid black; */
+            border-style: solid;
+            border-color: black;
+            border-width: 0px 1px 1px 1px;
+            text-align: center;
+        }
+
+        .cgpa-details h4 {
+            text-decoration: underline;
+        }
+
+        .cgpa-details h4, .cgpa-details h5 {
+            border-top: 1px solid black;
+            margin: 0;
+        }
+
+        .cgpa-details h5:nth-of-type(3) {
+            border-right: 2px solid black;
+        }
+
+        .semester {
+            grid-column: 1 / 4;
+            /* text-align: center; */
+        }
+
+        .cumulative {
+            grid-column: 4 / -1;
+            /* text-align: center; */
+        }
+
+        .cgpa-details ~ table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cgpa-details ~ table tr {
+            display: grid;
+            grid-template-columns: 35% repeat(4, 1fr) 24%;
+            /* border: 1px solid black; */
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .cgpa-details ~ table tr:first-child {
+            border-style: solid;
+            border-color: black;
+            border-width: 0 1px 1px 1px;
+            /* text-align: center; */
+        }
+
+        .cgpa-details ~ table th {
+            text-decoration: underline;
+        }
+
+        .cgpa-details ~ table td:first-child, .cgpa-details ~ table th:first-child {
+            padding-left: 25px;
+            text-align: left;
+        }
+
+        .cgpa-details ~ table th:first-child {
+            padding-left: 50px;
+        }
+
+        .document-summary {
+            border-top: 2px solid black;
+            font-size: 21px;
+        }
+
+        .grading table {
+            width: 70%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .summary-details {
+            display: grid;
+            grid-template-columns: 4fr 3fr;
+            grid-row-gap: 5px;
+            grid-column-gap: 15px;
+            width: 95%;
+            margin: auto;
+        }
+
+        .summary-details h4 {
+            grid-column: 1 / -1;
+        }
+
+        .grading, .diploma {
+            height: 400px;
+        }
+
+        .signature {
+            border-top: 1px solid black;
+            text-align: center;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            margin: 0;
+            /* font-size: 10px; */
+        }
+
+        .diploma-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 80%;
+        }
+
+        .diploma-details p:first-child, .diploma-details p:nth-child(2) {
+            border-bottom: 1px solid black;
+        }
+
+        .diploma-details p {
+            margin: 5px 0;
+        }
+
+        .qrcode {
+            margin-top: 30px;
+            text-align: center;
+            /* border: 1px solid black; */
+        }
+
+        .key {
+            font-size: 15px;
+            margin-top: 0;
+        }
+
+        .warning {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>*@
+
+</head>
+
+<body data-copy="@(Request.Query["copy"] == "OFFICIAL" ? "official" : "student")">
+    <div class="header-info">
+        @*<img src="./images/logoyct.png" alt="Yabatech logo" class="school-logo">*@
+        <h2 class="school-name" style="text-align: center;">YABA COLLEGE OF TECHNOLOGY</h2>
+        <p>SCHOOL OF @Model.HeadingData.Element("school")?.Value</p>
+        <p>DEPARTMENT: @Model.HeadingData.Element("dept")?.Value</p>
+        <p>PROGRAM: @Model.HeadingData.Element("prog")?.Value</p>
+        <h3 class="official">@Model.TranscriptType TRANSCRIPT OF ACADEMIC RECORD</h3>
+    </div>
+
+    <p><span class="name">NAME : @Model.HeadingData.Element("name")?.Value</span><span class="matric">MATRICULATION NUMBER : @Model.HeadingData.Element("matricno1")?.Value</span></p>
+
+    <p class="key">Key: @Model.TranscriptKey</p>
+
+    @foreach (var data in Model.SubHeadingData)
+    {
+        <div class="document-header">
+            <h3>@data.Element("SLevelname")?.Value</h3>
+            <h3>@data.Element("Semester")?.Value SEMESTER @data.Element("ASession")?.Value SESSION</h3>
+        </div>
+        <div class="cgpa-details">
+            <h4 class="semester">SEMESTER</h4>
+            <h4 class="cumulative">CUMULATIVE</h4>
+            <h5>TU: @data.Element("TU")?.Value</h5>
+            <h5>WGP: @data.Element("WGP")?.Value</h5>
+            <h5>GPA: @data.Element("GPA")?.Value</h5>
+            <h5>CTU: @data.Element("ctu")?.Value</h5>
+            <h5>CTUP: @data.Element("ctup")?.Value </h5>
+            <h5>CWGP: @data.Element("cwgp")?.Value </h5>
+            <h5>CGPA: @data.Element("cgpa")?.Value</h5>
+        </div>
+        <table>
+            <tr>
+                <th>COURSE TITLE</th>
+                <th>CODE</th>
+                <th>UNIT</th>
+                <th>SCORE</th>
+                <th>GRADE</th>
+                <th>WEIGHTED GRADE POINT</th>
+            </tr>
+        @{
+            var bodyData = Model.BodyData.Where(x => x.Element("SemId")?.Value == data.Element("semid")?.Value);
+        }
+        @foreach (var item in bodyData)
+        {
+            <tr>
+                <td class="wrap-text">@item.Element("CosTitle")?.Value</td>
+                <td>@item.Element("CosCode")?.Value</td>
+                <td>@item.Element("CUnit")?.Value</td>
+                <td>@item.Element("Score")?.Value</td>
+                <td>@item.Element("Grade")?.Value</td>
+                <td>@item.Element("CPoint")?.Value</td>
+            </tr>
+        }
+        </table>
+    }
+
+    <div class="document-summary">
+        <p>Graduating CGPA: @Model.SummaryData?.Element("cgpa")?.Value</p>
+        <p>Class of Diploma Award: PROBATION; @Model.SummaryData?.Element("remark")?.Value</p>
+        <p>Date of Diploma Award: @Model.SummaryData?.Element("dategrade")?.Value</p>
+        <p>Session of Diploma Award: @Model.SummaryData?.Element("ASession")?.Value</p>
+        <div class="summary-details">
+            <h4 style="text-decoration: underline; margin: 0;">LEGEND</h4>
+            <div class="grading" style="border: 1px solid black;">
+                <h4 style="text-decoration: underline; margin: 0 0 5px 0;">GRADING</h4>
+                <table>
+                    <tr>
+                        <td>Score</td>
+                        <td>Letter Grade</td>
+                        <td>Grade Point</td>
+                    </tr>
+                    <tr>
+                        <td>75-100</td>
+                        <td>A1</td>
+                        <td>4.0</td>
+                    </tr>
+                    <tr>
+                        <td>70-74</td>
+                        <td>A2</td>
+                        <td>3.50</td>
+                    </tr>
+                    <tr>
+                        <td>65-69</td>
+                        <td>B1</td>
+                        <td>3.25</td>
+                    </tr>
+                    <tr>
+                        <td>60-64</td>
+                        <td>B2</td>
+                        <td>3.00</td>
+                    </tr>
+                    <tr>
+                        <td>55-59</td>
+                        <td>C1</td>
+                        <td>2.75</td>
+                    </tr>
+                    <tr>
+                        <td>50-54</td>
+                        <td>C2</td>
+                        <td>2.50</td>
+                    </tr>
+                    <tr>
+                        <td>45-49</td>
+                        <td>D1</td>
+                        <td>2.25</td>
+                    </tr>
+                    <tr>
+                        <td>40-44</td>
+                        <td>D2</td>
+                        <td>2.00</td>
+                    </tr>
+                    <tr>
+                        <td>0-39</td>
+                        <td>F</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>--No Entry</td>
+                        <td>NE</td>
+                        <td>0.00</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="diploma" style="position: relative;">
+                <h4 style="text-decoration: underline; margin: 0;">DIPLOMA CLASSIFICATION</h4>
+                <div class="diploma-details">
+                    <p>CGPA</p>
+                    <p>Classification</p>
+                    <p>3.50 to 4.00</p>
+                    <p>DISTINCTION</p>
+                    <p>3.00 to 3.49</p>
+                    <p>UPPER CREDIT</p>
+                    <p>2.50 to 2.99</p>
+                    <p>LOWER CREDIT</p>
+                    <p>2.00 to 2.49</p>
+                    <p>PASS</p>
+                    <p>0.00 to 1.99</p>
+                    <p>FAIL</p>
+                </div>
+                @if (Model.TranscriptType == "OFFICIAL")
+                {
+                    <p class="signature">Registrar's Signature</p>
+                }
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="qrcode">
+        <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=NAME%20:%20ONWUKWE,%20CHIDINMA%20UGOCHI%0AMATRICULATION%20NUMBER%20:%20F/ND/15/3740005" alt="QR Code" />
+        <!-- <img src="https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fwww.google.com&chs=160x160&chld=L|0" alt="QR code"> -->
+        <p style="font-size: 15px;" class="key">Key: @Model.TranscriptKey</p>
+    </div>
+
+    <h5 class="warning">**********ANY ALTERATION WHATSOEVER RENDERS THIS RESULT INVALID.*********</h5>
+    @if (Model.TranscriptType == "STUDENT-COPY")
+    {
+        <h5 class="warning">THIS TRANSCRIPT IS PROVIDED FOR STUDENT REFERENCE ONLY, NOT A REPLACEMENT FOR THE OFFICIAL TRANSCRIPT.</h5>
+    }
+
+   @* <button onclick="demoFromHTML()">Generate PDF</button>*@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#btnSubmit").click(function () {
+                console.log("Hit");
+                $("input[name='PageHtml']").val($("#details").html());
+            });
+        });
+    </script>
+
+    <script>
+        function demoFromHTML() {
+            console.log("Printtt");
+            var pdf = new jsPDF();
+            // source can be HTML-formatted string, or a reference
+            // to an actual DOM element from which the text will be scraped.
+            source = document.getElementById("details");
+
+            // we support special element handlers. Register them with jQuery-style
+            // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+            // There is no support for any other type of selectors
+            // (class, of compound) at this time.
+            specialElementHandlers = {
+                // element with id of "bypass" - jQuery style selector
+                '#bypassme': function (element, renderer) {
+                    // true = "handled elsewhere, bypass text extraction"
+                    return true
+                }
+            };
+            margins = {
+                top: 0,
+                bottom: 0,
+                left: 0,
+                width: 1000
+            };
+            // all coords and widths are in jsPDF instance's declared units
+            // 'inches' in this case
+            pdf.fromHTML(
+                source, // HTML string or DOM elem ref.
+                40, // x coord
+                80, 
+                { // y coord
+                    'width': 250, // max width of content on PDF
+                    'elementHandlers': specialElementHandlers
+                },
+
+            function (dispose) {
+                // dispose: object with X, Y of the last line add to the PDF
+                //          this allow the insertion of new lines after html
+                pdf.save('Test.pdf');
+            }, margins);
+        }
+    </script>
+</body>
+
+</html>

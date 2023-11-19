@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace ErpTranscript.Models.Student
+{
+    [Keyless]
+    [Table("registrationLocktemp")]
+    public partial class RegistrationLocktemp
+    {
+        [Column("RegLockID")]
+        public int RegLockId { get; set; }
+        public int LockStatus { get; set; }
+        [Column("message", TypeName = "ntext")]
+        public string Message { get; set; } = null!;
+        [Column("programTypeID")]
+        public int ProgramTypeId { get; set; }
+        public int RegistrationStatus { get; set; }
+        [Column("dateModified")]
+        public DateTime DateModified { get; set; }
+        [Column("who")]
+        [StringLength(50)]
+        [Unicode(false)]
+        public string Who { get; set; } = null!;
+        public int? PaymentStatus { get; set; }
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://portal.yabatech.edu.ng/paymentservice/yctoutservice.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, ServiceReference2"
+    ],
+    "targetFramework": "net7.0",
+    "typeReuseMode": "Specified"
+  }
+}

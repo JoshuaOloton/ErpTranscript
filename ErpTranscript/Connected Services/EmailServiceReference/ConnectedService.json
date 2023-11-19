@@ -1,0 +1,16 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "https://portal.yabatech.edu.ng/transapi/yctoutservice.asmx"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, EmailServiceReference"
+    ],
+    "targetFramework": "net6.0",
+    "typeReuseMode": "Specified"
+  }
+}

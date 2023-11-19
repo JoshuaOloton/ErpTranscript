@@ -1,0 +1,202 @@
+﻿body {
+    padding: 40px;
+    font-size: 25px;
+    background-image: url(assets/images/yct.png);
+    background-position: center;
+    background-size: contain;
+}
+
+
+.school-logo {
+    width: 200px;
+    /* margin-right: 50px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.school-name {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.header-info {
+    text-align: center;
+    position: relative;
+    border: 1px solid #00000010;
+}
+
+    .header-info p, .header-info h3 {
+        margin: 0;
+    }
+
+    .header-info + p {
+        padding-bottom: 5px;
+        border-bottom: 2px solid black;
+        display: flex;
+        justify-content: space-between;
+    }
+
+.official {
+    text-decoration: underline;
+}
+
+.document-header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 0 20px;
+}
+
+    .document-header h3 {
+        margin: 0;
+    }
+
+.cgpa-details {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* border: 1px solid black; */
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 1px 1px 1px;
+    text-align: center;
+}
+
+    .cgpa-details h4 {
+        text-decoration: underline;
+    }
+
+    .cgpa-details h4, .cgpa-details h5 {
+        border-top: 1px solid black;
+        margin: 0;
+    }
+
+        .cgpa-details h5:nth-of-type(3) {
+            border-right: 2px solid black;
+        }
+
+.semester {
+    grid-column: 1 / 4;
+    /* text-align: center; */
+}
+
+.cumulative {
+    grid-column: 4 / -1;
+    /* text-align: center; */
+}
+
+/* .gpa-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+} */
+
+.cgpa-details ~ table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+    .cgpa-details ~ table tr {
+        display: grid;
+        grid-template-columns: 35% repeat(4, 1fr) 24%;
+        /* border: 1px solid black; */
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+        .cgpa-details ~ table tr:first-child {
+            border-style: solid;
+            border-color: black;
+            border-width: 0 1px 1px 1px;
+            /* text-align: center; */
+        }
+
+    .cgpa-details ~ table th {
+        text-decoration: underline;
+    }
+
+        .cgpa-details ~ table td:first-child, .cgpa-details ~ table th:first-child {
+            padding-left: 25px;
+            text-align: left;
+        }
+
+        .cgpa-details ~ table th:first-child {
+            padding-left: 50px;
+        }
+
+.document-summary {
+    border-top: 2px solid black;
+    font-size: 21px;
+}
+
+.grading table {
+    width: 70%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.summary-details {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-row-gap: 5px;
+    grid-column-gap: 15px;
+    width: 95%;
+    margin: auto;
+}
+
+    .summary-details h4 {
+        grid-column: 1 / -1;
+    }
+
+.grading, .diploma {
+    height: 400px;
+}
+
+.signature {
+    border-top: 1px solid black;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    /* font-size: 10px; */
+}
+
+.diploma-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+}
+
+    .diploma-details p:first-child, .diploma-details p:nth-child(2) {
+        border-bottom: 1px solid black;
+    }
+
+    .diploma-details p {
+        margin: 5px 0;
+    }
+
+.qrcode {
+    margin-top: 30px;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+
+.key {
+    font-size: 15px;
+    margin-top: 0;
+}
+
+.warning {
+    margin-top: 30px;
+    text-align: center;
+}
+
+@media (print) {
+    @page{
+        size: A4;
+    }
+}

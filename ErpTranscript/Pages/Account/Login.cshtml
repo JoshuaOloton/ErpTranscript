@@ -1,0 +1,19 @@
+﻿@page
+@model ErpTranscript.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Log In";
+}
+
+<div class="login-body">
+    <div class="login-form">
+        <div class="logo"></div>
+        <h5 class="form-title">Transcript Manager Login</h5>
+        <form method="post" onsubmit="LoginSubmit(event)">
+            <input asp-for="Model.Username" type="text" placeholder="Erp Username"/>
+            <span asp-validation-for="Model.Username" class="text-danger fw-bold" style="font-size: 0.8rem;"></span>
+            <input asp-for="Model.Password" type="password" placeholder="Password"/>
+            <span asp-validation-for="Model.Password" class="text-danger fw-bold" style="font-size: 0.8rem;"></span>
+            <button>login</button>
+        </form>
+    </div>
+</div>

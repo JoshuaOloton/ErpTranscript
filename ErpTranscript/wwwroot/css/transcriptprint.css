@@ -1,0 +1,237 @@
+﻿body {
+    padding: 40px;
+    background-position: center;
+    background-size: contain;
+    /* background-attachment: fixed; */
+    background-size: 100%;
+    background-repeat: repeat-y;
+}
+
+body[data-copy=student] {
+    background-image: url(../images/yct-III.png);
+    background-color: red;
+}
+
+body[data-copy=official] {
+    background-image: url(../images/yct-I.png);
+}
+
+@page {
+    size: A4;
+}
+
+
+.school-logo {
+    width: 85px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.school-name {
+    text-align: center;
+    font-size: 25px;
+    margin: 30px;
+}
+
+.header-info {
+    text-align: center;
+    position: relative;
+    border: 1px solid #00000010;
+}
+
+.header-info p, .header-info h3 {
+    margin: 0;
+}
+
+.header-info + p {
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    font-size: 0.6rem;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.official {
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+.document-header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding: 0 20px;
+}
+
+    .document-header h3 {
+        margin: 0;
+        font-size: 17px;
+    }
+
+.matric {
+    float: right;
+}
+
+.cgpa-details {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /* border: 1px solid black; */
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 1px 1px 1px;
+    text-align: center;
+}
+
+    .cgpa-details h4 {
+        text-decoration: underline;
+    }
+
+    .cgpa-details h4, .cgpa-details h5 {
+        border-top: 1px solid black;
+        margin: 0;
+        font-size: 12px;
+    }
+
+        .cgpa-details h5:nth-of-type(3) {
+            border-right: 2px solid black;
+        }
+
+.semester {
+    grid-column: 1 / 4;
+    /* text-align: center; */
+}
+
+.cumulative {
+    grid-column: 4 / -1;
+    /* text-align: center; */
+}
+
+/* .gpa-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+} */
+
+.cgpa-details ~ table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+    .cgpa-details ~ table tr {
+        display: grid;
+        grid-template-columns: 35% repeat(4, 1fr) 24%;
+        /* border: 1px solid black; */
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 12px;
+    }
+
+        .cgpa-details ~ table tr:first-child {
+            border-style: solid;
+            border-color: black;
+            border-width: 0 1px 1px 1px;
+            /* text-align: center; */
+        }
+
+    .cgpa-details ~ table th {
+        text-decoration: underline;
+        /* font-weight: normal; */
+        font-size: 11px;
+    }
+
+        .cgpa-details ~ table td:first-child, .cgpa-details ~ table th:first-child {
+            padding-left: 25px;
+            text-align: left;
+        }
+
+        .cgpa-details ~ table th:first-child {
+            padding-left: 50px;
+        }
+
+.page-break {
+    page-break-after: always;
+}
+
+.document-summary {
+    border-top: 2px solid black;
+    page-break-before: always;
+}
+
+    .document-summary > p {
+        font-size: 11px;
+    }
+
+.grading table {
+    width: 70%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.grading tr {
+    font-size: 11px;
+}
+
+.summary-details {
+    display: grid;
+    grid-template-columns: 4fr 3fr;
+    grid-row-gap: 5px;
+    grid-column-gap: 15px;
+    width: 95%;
+    margin: auto;
+}
+
+    .summary-details > h4 {
+        grid-column: 1 / -1;
+    }
+
+    .summary-details > h4, .grading > h4, .diploma-details p {
+        font-size: 13px;
+    }
+
+.grading, .diploma {
+    height: 250px;
+}
+
+.signature {
+    border-top: 1px solid black;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    font-size: 14px;
+}
+
+.diploma-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+}
+
+    .diploma-details p:first-child, .diploma-details p:nth-child(2) {
+        border-bottom: 1px solid black;
+    }
+
+    .diploma-details p {
+        margin: 5px 0;
+    }
+
+.qrcode {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.key {
+    font-size: 10px;
+    margin-top: 0;
+}
+
+.warning {
+    margin-top: 30px;
+    text-align: center;
+}

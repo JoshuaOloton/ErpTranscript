@@ -1,0 +1,600 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*html {
+    position: relative;
+    min-height: 100%;
+}*/
+
+.view-error {
+    width: 100%;
+    background-color: #f3d5d2;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.8em 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+/*    align-items: center;*/
+}
+
+header .username {
+    font-size: 1.2rem;
+    pointer-events: none;
+    user-select: none;
+}
+
+.footer {
+    margin: 0;
+    padding: 0;
+    margin-top: auto !important;
+}
+
+.container-custom {
+    width: 90%;
+    margin: 50px auto auto auto;
+    max-width: 1600px;
+    flex: 1;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    font-size: 1.9rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+
+main .container::before, main .container-fluid::before {
+    content: "";
+    background-image: url(../images/logoyct.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    margin: 5rem;
+    z-index: -100;
+    /*    display: block;*/
+    /*   height: 100vh;*/
+}
+
+
+.login-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-body::before {
+    content: "";
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/susan-q-yin-2JIvboGLeho-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    inset: 0;
+    opacity: 0.9;
+    z-index: -1;
+}
+
+.form-title {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: #ffffff80;
+    max-width: 25rem;
+    margin: 0 auto;
+    padding: 2.5rem 3rem;
+    text-align: center;
+    box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.login-form input {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.login-form input + span {
+    display: inline-block;
+    margin: 0 0 1em;
+}
+
+.login-form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: none;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.login-form button:hover, .login-form button:active, .login-form button:focus {
+    background: #43A047;
+}
+
+div.logo {
+    content: url("https://portal.yabatech.edu.ng/portal/assets/icons/logoyct.png");
+    width: 120px;
+    margin: 0 auto 20px auto;
+}
+
+.dashboard-link {
+    font-size: 1.3rem;
+    margin-bottom: 1.5em;
+    display: inline-block;
+    background: #0d6efd;
+    color: #fff;
+    padding: 0.4em 0.8em;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.dashboard-link:hover {
+    color: #fff;
+}
+
+
+.page-heading {
+    text-decoration: double underline;
+    font-weight: 700;
+}
+
+.bt {
+    border: 1px solid grey;
+    background: #f0ede9;
+    opacity: 0.8;
+}
+
+.bt:hover {
+    opacity: 1;
+}
+
+.file-input {
+    /*    display: none;*/
+}
+
+table.pending-table {
+/*    table-layout: fixed;*/
+    padding-bottom: 4rem;
+}
+
+
+
+.dataTables_wrapper .dataTables_info {
+    margin-bottom: 1em;
+}
+
+table.pending-table td {
+    white-space: nowrap;
+}
+
+.dropBtn {
+    margin-bottom: 0;
+    /*display: block; */
+
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    z-index: 1;
+    background: #f1f1f1;
+    display: none;
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.2);
+    /*    box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);*/
+    min-width: 9rem;
+/*    border: 1px solid black;*/
+}
+
+.dropdown-content a {
+    color: black;
+    text-decoration: none;
+    padding: 0.8em 1em;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+/*.custom-file-input::-webkit-file-upload-button {
+    display: none;
+}*/
+
+.student-input::before {
+    content: 'Select Student file';
+}
+
+.official-input::before {
+    content: 'Select Official file';
+}
+
+#example button, #example p {
+    border: 1px solid black;
+}
+
+.approved {
+    font-size: 0.9rem;
+}
+
+.preview-ok {
+    display: none;
+}
+
+.document-modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.feedback-modal-wrapper,
+.feedback-message-wrapper,
+.confirm-delete-modal,
+.confirm-approve-modal,
+.confirm-close-modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    transition: all 0.08s ease-in;
+}
+
+.feedback-modal-wrapper[data-show=false],
+.feedback-message-wrapper[data-show=false],
+.confirm-delete-modal[data-show=false],
+.confirm-approve-modal[data-show=false],
+.confirm-close-modal[data-show=false] {
+    opacity: 0;
+    z-index: -100;
+}
+
+.feedback-modal-wrapper[data-show=true],
+.feedback-message-wrapper[data-show=true],
+.confirm-delete-modal[data-show=true],
+.confirm-approve-modal[data-show=true],
+.confirm-close-modal[data-show=true] {
+    opacity: 1;
+    z-index: 0;
+}
+
+.confirm-delete-modal form, .confirm-approve-modal form, #approve-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.feedback-title {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 1em;
+}
+
+.feedback-by {
+    font-weight: bold;
+}
+
+.flag-icon {
+    position: relative;
+    cursor: pointer;
+    background-color: #f3d5d2;
+    display: inline-block;
+    width: 1.7em;
+    height: 1.7em;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease-in;
+}
+
+.flag-icon::after {
+    content: attr(data-flag-msg);
+    background-color: #4c4c4c;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 5px;
+    transform: scale(0);
+    transition: transform 0.2s ease-in 0.1s, bottom 0.2s ease-in 0.1s;
+    opacity: 0.9;
+}
+
+.flag-icon:hover::after {
+    transform: scale(1);
+    bottom: 100%;
+}
+
+.flag-icon:hover {
+    background-color: #f3d5d2;
+}
+
+.flag-icon i {
+    font-size: 1.2rem;
+}
+
+.flag-icon:hover > i {
+    font-weight: bolder;
+}
+
+.modal-content {
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5), 0 5px 5px 0 rgba(0, 0, 0, 0.8);
+    position: absolute;
+    left: 50%;
+}
+
+.modal-content.feedback-content {
+    width: 30%;
+    top: 40%;
+    padding: 3em;
+    position: relative;
+}
+
+.modal-content.message-content {
+    width: 40%;
+    top: 40%;
+    padding: 3em;
+    position: relative;
+}
+
+.modal-content.confirm-content {
+    width: 25%;
+    min-width: 400px;
+    top: 40%;
+    padding: 3em;
+    position: relative;
+}
+
+.modal-content.feedback-content textarea {
+    width: 100%;
+    border-color: silver;
+    resize: none;
+    outline: none;
+    padding: 0 1em;
+}
+
+.close-btn {
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    font-size: 1.7rem;
+    transition: all .2s ease-in;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    font-weight: bold;
+}
+
+.close-btn-wrapper:hover {
+    background-color: red;
+}
+
+.submit-feedback {
+    /*    font-family: "Roboto", sans-serif;*/
+    text-transform: uppercase;
+    outline: 0;
+    background: #006600;
+    width: 100%;
+    margin-top: 1em;
+    border: none;
+    padding: 1em;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.modal-content.document-content {
+    width: 80%;
+    height: 80%;
+    top: 50%;
+}
+
+.modal-content__title {
+    font-family: "Roboto", sans-serif;
+}
+
+.modal-content__text {
+/*    font-family: "Raleway", sans-serif;*/
+}
+
+.modal-content .btn-wrapper {
+    margin-top: 1em;
+}
+
+.header-info, .document-header, .cgpa-details, .cgpa-details + table, .header-info + p, .document-summary {
+    font-family: 'Times New Roman', sans-serif;
+}
+
+/*.file-input {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}*/
+
+.custom-file-input {
+    /* Add custom styling for the label element here */
+    /* Example styles */
+/*    padding: 0.75em;*/
+    cursor: pointer;
+}
+
+.dropBtn, .custom-file-input {
+    padding: 0.4em;
+    border: 1px solid black;
+}
+
+span.filename {
+    font-size: 0.7rem;
+    display: block;
+}
+
+.activities {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+}
+
+@media screen and (max-width: 1200px) {
+    .activities {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .activities {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .activities {
+        grid-template-columns: 1fr;
+        align-items: center;
+        border: 1px solid;
+    }
+
+    .activity {
+        max-width: 300px;
+    }
+}
+
+.activity {
+    /*    border: 1px solid;*/  
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.6em 0;
+    background-color: rgba(241,241,241, 0.9);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease-in;
+/*    max-width: 500px;*/
+/*    margin: auto;*/
+}
+
+.activity:hover .activity__icon, .activity:hover .activity__link {
+    opacity: 0.9;
+}
+    
+.activity:hover {
+    transform: scale(1.01) translateY(10px);
+}   
+
+.activity__link {
+    background-color: green;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    max-width: 80%;
+}
+
+.activity__link a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.activity__icon {
+    border-radius: 50%;
+    height: 4.3rem;
+    width: 4.3rem;
+    border: 1px solid;
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    transition: all 300ms;
+}
+
+.activity__icon i {
+/*    color: #fff;*/
+    font-size: 1.15rem;
+}
+
+.pending-table input, .pending-table button {
+    /*    display: inline !important;*/
+}
+
+.hah {
+    display: inline-block;
+    margin-left: 1em;
+    margin-right: 1em;
+/*    border: 1px solid;*/
+}
+
+.footer  {
+    border-top: none !important;
+}

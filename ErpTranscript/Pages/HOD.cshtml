@@ -1,0 +1,139 @@
+﻿@page
+@model ErpTranscript.Pages.HODModel
+@{
+    ViewData["Title"] = "HOD";
+}
+
+<div class="container-fluid">
+    <a asp-page="/Index" class="dashboard-link"><i class="fa-solid fa-arrow-left"></i>  Back to Dashboard</a>
+    <h5></h5>
+    <h4 class="mb-4 mt-3 page-heading">HOD INTERFACE - PENDING TRANSCRIPTS @*FOR @Model.SchoolName (@Model.StaffName)*@</h4>
+    <form method="post" enctype="multipart/form-data" id="pending-form">
+        @Html.AntiForgeryToken()
+        <div class="table-responsive">
+            @if (Model.PendingRequests == null || !Model.PendingRequests.Any())
+            {
+                <p style="font-style: italic;">No pending transcripts available</p>
+            }
+            else
+            {
+                <table id="example" class="row-border pending-table">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Matric No</th>
+                            <th>Remita_rrr</th>
+                            <th>Final_cgpa</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var request in Model.PendingRequests)
+                        {
+                            <tr>
+                                <td>
+                                    @request.Surname @request.Firstname
+                                    @if (request.Flag == 1)
+                                    {
+                                        <div class="flag-icon" data-flag-msg="Click to see transcript feedback."
+                                             onclick="toggleFeedbackMessage(event)" data-remita="@request.RemitaRrr">
+                                            <i class="fa-solid fa-exclamation text-danger"
+                                               title="This transcript is flagged."></i>
+                                        </div>
+                                    }
+                                </td>
+                                <td>@request.Matricno</td>
+                                <td>@request.RemitaRrr</td>
+                                <td>@request.FinalCgpa</td>
+                                @if (request.Fstatus == 1)
+                                {
+                                    <td>
+                                        <button type="button" onclick="showModal()" class="btn view-transcript-btn" data-remita=@request.RemitaRrr>
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            Preview
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn" id="preview-ok" data-transcriptId=@request.Id>Click here to complete Preview</button>
+                                        <span class="preview-ok text-success">Preview Complete</span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-outline-danger del" data-remita="@request.RemitaRrr"
+                                           onclick="toggleConfirmDialog()">Delete</a>
+                                    </td>
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a class="btn btn-outline-primary" asp-route-matNo="@request.Matricno"
+                                           asp-page-handler="ResultStatement">View Student's Result</a>
+                                    </td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <p class="btn btn-outline-success dropBtn" onclick="showDropdown()">Generate Transcript</p>
+                                            <div class="dropdown-content">
+                                                <a asp-page-handler="ViewTranscript" asp-route-matricNo=@request.Matricno asp-route-copy="STUDENT-COPY">Student Copy</a>
+                                                <a asp-page-handler="ViewTranscript" asp-route-matricNo=@request.Matricno asp-route-copy="OFFICIAL">Official Copy</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    </td>
+                                    @*<td>
+                        @if (User.IsInRole("Programmer"))
+                        {
+
+                        }
+
+                        </td>*@
+                                    <td>
+                                    </td>
+                                }
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+                <input type="hidden" class="hidden-remita" name="remita">
+                <input type="hidden" class="hidden-matricno" name="matricno">
+            }
+        </div>
+    </form>
+
+    <div class="document-modal">
+        <div class="modal-content document-content">
+            <iframe src="" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <div class="feedback-message-wrapper" data-show="false">
+        <div class="modal-content message-content">
+            <p class="close-btn" onclick="toggleFeedbackMessage(event)">&times;</p>
+            <h4 class="feedback-title">TRANSCRIPT FEEDBACK</h4>
+            <p class="feedback-by"></p>
+            <p class="feedback-message">Loading...</p>
+        </div>
+    </div>
+
+    <div class="confirm-delete-modal" data-show="false">
+        <div class="modal-content confirm-content">
+            <h4 class="modal-content__title">Confirm Delete</h4>
+            <h6 class="modal-content__text">Are you sure you want to delete this transcript?</h6>
+            <div class="btn-wrapper">
+                <form method="post" asp-page-handler="Delete">
+                    <input type="hidden" class="process-remita" name="remita">
+                    <input type="hidden" name="returnPage" value="Pending">
+                    <button type="submit" class="btn btn-outline-danger" data-returnpage="Uploaded">Yes, delete</button>
+                </form>
+                <button class="btn btn-outline-primary del" onclick="toggleConfirmDialog()">No, cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

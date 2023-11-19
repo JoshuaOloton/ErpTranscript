@@ -1,0 +1,9 @@
+﻿<script>
+	var msg = @(TempData["notification"] != null ? Html.Raw(TempData["notification"]) : Html.Raw("undefined"));
+
+	console.log(msg);
+	if (msg)
+	{
+        toastr[msg.type](msg.message);
+	}
+</script>

@@ -1,0 +1,95 @@
+﻿@*@page "Approved"
+@page "/Approved/{id:int}"*@
+@page
+@model ErpTranscript.Pages.ApprovedModel
+@{
+    ViewData["Title"] = "Approved Transcripts";
+}
+
+<div class="container">
+    <a asp-page="/Index" class="dashboard-link"><i class="fa-solid fa-arrow-left"></i>  Back to Dashboard</a>
+    <h4 class="mb-4 page-heading">APPROVED TRANSCRIPTS</h4>
+    <form method="post" enctype="multipart/form-data" id="form1">
+        <div class="table-responsive">
+            @if (Model.ApprovedRequests == null || !Model.ApprovedRequests.Any())
+            {
+                <p style="font-style: italic;">No transcripts have been approved</p>
+            }
+            else
+            {
+                <table id="example" class="cell-border">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Matric No</th>
+                            <th>Time Elapsed</th>
+                            <th>Destination Email</th>
+                            <th>Destination Address</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var request in Model.ApprovedRequests)
+                    {
+                        <tr>
+                            <td>@request.Surname @request.Firstname</td>
+                            <td>@request.Matricno</td>
+                            <td>
+                                @if (request.ApproveDate != null)
+                                {
+                                    int daysElapsed = (DateTime.Now - (DateTime)request.ApproveDate).Days;
+                                    @daysElapsed @((daysElapsed == 1) ? " day elapsed" : " days elapsed")
+                                }
+                            </td>
+
+                            <td>@request.Email</td>
+                            <td>@await Model.GetDestination(request.RemitaRrr)</td>
+                            <td>
+                                <button type="button" onclick="showModal()" class="btn view-transcript-btn" data-remita=@request.RemitaRrr>
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    Preview and Print
+                                </button>
+                                @if (request.Closereq != 1 && User.IsInRole("IT Officer"))
+                                {
+                                    <a class="btn btn-outline-danger close" onclick="toggleConfirmDialog()" data-remita="@request.RemitaRrr">
+                                        <i class="fa-solid fa-xmark"></i>
+                                        Close Request
+                                    </a>
+                                    <span class="approved text-success">Approved</span>
+                                }
+                                else if (request.Closereq == 1)
+                                {
+                                    <span class="approved text-success">Transcript closed and Approved</span>
+                                }
+                                else
+                                {
+                                    <span class="approved text-success">Transcript Approved</span>
+                                }
+                            </td>
+                        </tr> 
+                    }
+
+                    </tbody>
+                </table>
+                <input type="hidden" class="hidden-remita" name="remita">
+            }
+        </div>
+    </form>
+
+    <div class="document-modal">
+        <div class="modal-content document-content">
+            <iframe src="" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <div class="confirm-close-modal" data-show="false">
+        <div class="modal-content confirm-content">
+            <h4 class="modal-content__title">Confirm Close Request</h4>
+            <h6 class="modal-content__text">Are you sure this transcript has been printed?</h6>
+            <div class="btn-wrapper">
+                <a asp-page-handler="CloseRequest" class="btn btn-outline-primary">Yes</a>
+                <button class="btn btn-outline-danger close" onclick="toggleConfirmDialog()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

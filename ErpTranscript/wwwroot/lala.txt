@@ -1,0 +1,4 @@
+var e = document.querySelectorAll("input[type=file");
+  var arr = Array.prototype.slice.call(e);
+    var ind = arr.indexOf(this);
+    console.log(ind);
